@@ -11,8 +11,11 @@ import { v4 as uuid } from 'uuid';
  *
  * BoxList -> NewBoxForm
  */
-
-function NewBoxForm({ createBox }) {
+interface CreateBox {
+  ClickHandler: (Event:React.MouseEvent<HTMLButtonElement>)=>void;
+}
+function NewBoxForm(Props:{createBox: Function}):JSX.Element {
+  //Question: is there another way to declare type for a function prop?
   const [formData, setFormData] = useState({
     height: "",
     width: "",
@@ -31,7 +34,7 @@ function NewBoxForm({ createBox }) {
   /** Submit form: call function from parent & clear inputs. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    createBox({ ...formData, id: uuid() });
+    Props.createBox({ ...formData, id: uuid() });
     setFormData({ height: "", width: "", backgroundColor: "" });
   }
 
