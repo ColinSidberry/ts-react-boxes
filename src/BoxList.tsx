@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Box, {BoxProps} from "./Box";
 import NewBoxForm from "./NewBoxForm";
+import { NewBoxInterface } from "./NewBoxForm";
 
 /** Manage list of boxes
  *
@@ -10,11 +11,11 @@ import NewBoxForm from "./NewBoxForm";
 
 
 function BoxList():JSX.Element {
-
+  //COMMENT: update BoxProps => to be BoxInterface
   const [boxes, setBoxes] = useState<BoxProps[]>([])
 
   /** add box with given { id, width, height, backgroundColor } */
-  function add(newBox:BoxProps):void {
+  function add(newBox:NewBoxInterface):void {
     setBoxes(boxes => [...boxes, newBox]);
   }
 
